@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!-- Activation des annotations de l'injection de dépendendances : @Autowired 
+		et @Value -->
+	<context:annotation-config />
+
+	<!-- Activation de la détection automatique des composants: @Component, 
+		@Service, @Controller et @Repository -->
+	<context:component-scan base-package="fr.adaming" />
+
+	<!-- Spécifier le chemin du fichier .properties -->
+	<context:property-placeholder location="classpath*:infoDS.properties" />
+
+	<!-- Déclaration du Bean DataSource -->
+	<bean id="dataSourceBean"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+		<!-- Injection des propriétés de connexion via les modificateurs -->
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.mdp}" />
+
+	</bean>
+
+	<!-- Déclaration du Bean EntityManager -->
+	<bean id="EntityManagerBean"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+
+		<!-- Injection du Bean DataSource via les Setters -->
+		<property name="dataSource" ref="dataSourceBean"></property>
+
+		<!-- Spécifier les classes annotées en JPA (classes persistantes) -->
+		<property name="packagesToScan" value="fr.adaming.model"></property>
+		
+		<property name="jpaVendorAdapter">
+		<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+		</property>
+
+		<!-- Propriétés de Hibernate -->
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">${hb.dialect}</prop>
+				<prop key="hibernate.show_sql">${hb.sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hb.strategy}</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- Déclarationn du bean TransactionManager -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+	<!-- Injection de l'entity manager via modificateur -->
+	<property name="entityManagerFactory" ref="EntityManagerBean"></property>
+</bean>
+
+<!-- Pour gerer les exceptions -->
+	<bean id="persistenceExceptionTranslationPostProcessor"
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+<tx:annotation-driven transaction-manager="transactionManager"/>
+</beans>
