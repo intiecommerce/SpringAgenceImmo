@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.adaming.dao.IBienALouerDao;
-import fr.adaming.dao.IBienAVendreDao;
 import fr.adaming.model.BienALouer;
 import fr.adaming.model.BienAVendre;
 import fr.adaming.model.Client;
