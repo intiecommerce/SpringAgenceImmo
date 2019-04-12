@@ -5,9 +5,10 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @SuppressWarnings("serial")
 @DiscriminatorValue(value = "Client")
@@ -18,12 +19,15 @@ public class Client extends Personne {
 	private boolean acquereur;
 
 	@OneToMany(mappedBy="client", cascade=CascadeType.ALL)
+	@JsonIgnoreProperties("client")
 	private List<Dossier> dossiers;
 
 	@ManyToMany(mappedBy="clients", cascade=CascadeType.ALL)
+	@JsonIgnoreProperties("clients")
 	private List<ClasseStandard> classesStandards;
 	
 	@OneToMany(mappedBy="client", cascade=CascadeType.ALL)
+	@JsonIgnoreProperties("client")
 	private List<Visite> visites;
 
 	// Constructeurs

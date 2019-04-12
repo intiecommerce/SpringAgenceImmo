@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @SuppressWarnings("serial")
 @Entity
 public class Dossier implements Serializable {
@@ -25,14 +27,17 @@ public class Dossier implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="client_id", referencedColumnName="id")
+	@JsonIgnoreProperties("dossiers")
 	private Personne client;
 	
 	@ManyToOne
 	@JoinColumn(name="id_conseiller", referencedColumnName="id")
+	@JsonIgnoreProperties("dossiers")
 	private Personne conseiller;
 	
 	@ManyToOne
 	@JoinColumn(name="id_bienImmobilier", referencedColumnName="idBienImmobilier")
+	@JsonIgnoreProperties("dossiers")
 	private BienImmobilier bienImmobilier;
 
 	// Constructeurs

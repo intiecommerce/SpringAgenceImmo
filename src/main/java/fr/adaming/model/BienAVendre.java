@@ -16,18 +16,20 @@ public class BienAVendre extends BienImmobilier {
 		super();
 	}
 
-	public BienAVendre(String statut, double superficie, double prix, String offre, String type, Date dateMiseEnVente,
-			Date dateDisponibilité, double revenuCadastral, int nombreChambre, Adresse adresse, String etat) {
-		super(statut, superficie, prix, offre, type, dateMiseEnVente, dateDisponibilité, revenuCadastral, nombreChambre,
-				adresse);
+	public BienAVendre(String titre, String description, String statut, double superficie, double prix, String offre,
+			String type, Date dateMiseEnVente, Date dateDisponibilité, double revenuCadastral, int nombreChambre,
+			byte[] photo1, byte[] photo2, byte[] photo3, Adresse adresse, String etat) {
+		super(titre, description, statut, superficie, prix, offre, type, dateMiseEnVente, dateDisponibilité,
+				revenuCadastral, nombreChambre, photo1, photo2, photo3, adresse);
 		this.etat = etat;
 	}
 
-	public BienAVendre(int idBienImmobilier, String statut, double superficie, double prix, String offre, String type,
-			Date dateMiseEnVente, Date dateDisponibilité, double revenuCadastral, int nombreChambre, Adresse adresse,
+	public BienAVendre(int idBienImmobilier, String titre, String description, String statut, double superficie,
+			double prix, String offre, String type, Date dateMiseEnVente, Date dateDisponibilité,
+			double revenuCadastral, int nombreChambre, byte[] photo1, byte[] photo2, byte[] photo3, Adresse adresse,
 			String etat) {
-		super(idBienImmobilier, statut, superficie, prix, offre, type, dateMiseEnVente, dateDisponibilité,
-				revenuCadastral, nombreChambre, adresse);
+		super(idBienImmobilier, titre, description, statut, superficie, prix, offre, type, dateMiseEnVente,
+				dateDisponibilité, revenuCadastral, nombreChambre, photo1, photo2, photo3, adresse);
 		this.etat = etat;
 	}
 

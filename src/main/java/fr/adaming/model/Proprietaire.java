@@ -7,6 +7,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @SuppressWarnings("serial")
 @DiscriminatorValue(value="Proprietaire")
 @Entity
@@ -16,6 +18,7 @@ public class Proprietaire extends Personne {
 	private String telephonePro;
 	
 	@OneToMany(mappedBy="proprietaire", cascade=CascadeType.ALL)
+	@JsonIgnoreProperties("proprietaire")
 	private List<BienImmobilier> biensImmobilier;
 
 	// Constructeurs

@@ -7,17 +7,19 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @SuppressWarnings("serial")
 @Entity
@@ -28,6 +30,8 @@ public class BienImmobilier implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected int idBienImmobilier;
+	protected String titre;
+	protected String description;
 	protected String statut;
 	protected double superficie;
 	protected double prix;
@@ -39,36 +43,52 @@ public class BienImmobilier implements Serializable {
 	protected Date dateDisponibilité;
 	protected double revenuCadastral;
 	protected int nombreChambre;
+	
+	@Lob
+	protected byte[] photo1;
+	@Lob
+	protected byte[] photo2;
+	@Lob
+	protected byte[] photo3;
 
 	@Embedded
 	protected Adresse adresse;
 
 	@ManyToOne
 	@JoinColumn(name = "id_proprietaire", referencedColumnName = "id")
+	@JsonIgnoreProperties("biensImmobilier")
 	private Personne proprietaire;
 
 	@ManyToOne
 	@JoinColumn(name = "id_conseiller", referencedColumnName = "id")
+	@JsonIgnoreProperties("biens")
 	private Personne conseillerResponsable;
 
 	@ManyToOne
 	@JoinColumn(name = "id_classeStandard", referencedColumnName = "idClasseStandard")
+	@JsonIgnoreProperties("biensImmobiliers")
 	private ClasseStandard classeStandard;
 
+	
 	@OneToMany(mappedBy = "bienImmobilier", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("bienImmobilier")
 	private List<Visite> visites;
 
+	
 	@OneToMany(mappedBy = "bienImmobilier", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("bienImmobilier")
 	private List<Dossier> dossiers;
 
 	// Constructeurs
 	public BienImmobilier() {
 		super();
 	}
-
-	public BienImmobilier(String statut, double superficie, double prix, String offre, String type,
-			Date dateMiseEnVente, Date dateDisponibilité, double revenuCadastral, int nombreChambre, Adresse adresse) {
+	public BienImmobilier(String titre, String description, String statut, double superficie, double prix, String offre,
+			String type, Date dateMiseEnVente, Date dateDisponibilité, double revenuCadastral, int nombreChambre,
+			byte[] photo1, byte[] photo2, byte[] photo3, Adresse adresse) {
 		super();
+		this.titre = titre;
+		this.description = description;
 		this.statut = statut;
 		this.superficie = superficie;
 		this.prix = prix;
@@ -78,14 +98,18 @@ public class BienImmobilier implements Serializable {
 		this.dateDisponibilité = dateDisponibilité;
 		this.revenuCadastral = revenuCadastral;
 		this.nombreChambre = nombreChambre;
+		this.photo1 = photo1;
+		this.photo2 = photo2;
+		this.photo3 = photo3;
 		this.adresse = adresse;
 	}
-
-	public BienImmobilier(int idBienImmobilier, String statut, double superficie, double prix, String offre,
-			String type, Date dateMiseEnVente, Date dateDisponibilité, double revenuCadastral, int nombreChambre,
-			Adresse adresse) {
+	public BienImmobilier(int idBienImmobilier, String titre, String description, String statut, double superficie,
+			double prix, String offre, String type, Date dateMiseEnVente, Date dateDisponibilité,
+			double revenuCadastral, int nombreChambre, byte[] photo1, byte[] photo2, byte[] photo3, Adresse adresse) {
 		super();
 		this.idBienImmobilier = idBienImmobilier;
+		this.titre = titre;
+		this.description = description;
 		this.statut = statut;
 		this.superficie = superficie;
 		this.prix = prix;
@@ -95,8 +119,13 @@ public class BienImmobilier implements Serializable {
 		this.dateDisponibilité = dateDisponibilité;
 		this.revenuCadastral = revenuCadastral;
 		this.nombreChambre = nombreChambre;
+		this.photo1 = photo1;
+		this.photo2 = photo2;
+		this.photo3 = photo3;
 		this.adresse = adresse;
 	}
+
+
 
 	// Getters & Setters
 	public int getIdBienImmobilier() {
@@ -225,6 +254,46 @@ public class BienImmobilier implements Serializable {
 
 	public void setClasseStandard(ClasseStandard classeStandard) {
 		this.classeStandard = classeStandard;
+	}
+
+	public byte[] getPhoto1() {
+		return photo1;
+	}
+
+	public void setPhoto1(byte[] photo1) {
+		this.photo1 = photo1;
+	}
+
+	public byte[] getPhoto2() {
+		return photo2;
+	}
+
+	public void setPhoto2(byte[] photo2) {
+		this.photo2 = photo2;
+	}
+
+	public byte[] getPhoto3() {
+		return photo3;
+	}
+
+	public void setPhoto3(byte[] photo3) {
+		this.photo3 = photo3;
+	}
+
+	public String getTitre() {
+		return titre;
+	}
+
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }

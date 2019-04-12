@@ -13,6 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @SuppressWarnings("serial")
 @Entity
 public class ClasseStandard implements Serializable {
@@ -31,9 +33,11 @@ public class ClasseStandard implements Serializable {
 	@JoinTable(name = "association_classestandards_client", 
 	joinColumns = @JoinColumn(name = "id_client"),
 	inverseJoinColumns = @JoinColumn(name = "id_classestandards"))
+	@JsonIgnoreProperties("classesStandards")
 	private List<Personne> clients;
 	
 	@OneToMany(mappedBy="classeStandard", cascade=CascadeType.ALL)
+	@JsonIgnoreProperties("classeStandard")
 	private List<BienImmobilier> biensImmobiliers;
 
 	// Constructeur

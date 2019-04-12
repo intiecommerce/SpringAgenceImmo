@@ -20,11 +20,12 @@ public class BienALouer extends BienImmobilier {
 		super();
 	}
 
-	public BienALouer(String statut, double superficie, double prix, String offre, String type, Date dateMiseEnVente,
-			Date dateDisponibilité, double revenuCadastral, int nombreChambre, Adresse adresse, double caution,
-			double loyer, double charge, String typeBail, String garniture) {
-		super(statut, superficie, prix, offre, type, dateMiseEnVente, dateDisponibilité, revenuCadastral, nombreChambre,
-				adresse);
+	public BienALouer(String titre, String description, String statut, double superficie, double prix, String offre,
+			String type, Date dateMiseEnVente, Date dateDisponibilité, double revenuCadastral, int nombreChambre,
+			byte[] photo1, byte[] photo2, byte[] photo3, Adresse adresse, double caution, double loyer, double charge,
+			String typeBail, String garniture) {
+		super(titre, description, statut, superficie, prix, offre, type, dateMiseEnVente, dateDisponibilité,
+				revenuCadastral, nombreChambre, photo1, photo2, photo3, adresse);
 		this.caution = caution;
 		this.loyer = loyer;
 		this.charge = charge;
@@ -32,11 +33,12 @@ public class BienALouer extends BienImmobilier {
 		this.garniture = garniture;
 	}
 
-	public BienALouer(int idBienImmobilier, String statut, double superficie, double prix, String offre, String type,
-			Date dateMiseEnVente, Date dateDisponibilité, double revenuCadastral, int nombreChambre, Adresse adresse,
+	public BienALouer(int idBienImmobilier, String titre, String description, String statut, double superficie,
+			double prix, String offre, String type, Date dateMiseEnVente, Date dateDisponibilité,
+			double revenuCadastral, int nombreChambre, byte[] photo1, byte[] photo2, byte[] photo3, Adresse adresse,
 			double caution, double loyer, double charge, String typeBail, String garniture) {
-		super(idBienImmobilier, statut, superficie, prix, offre, type, dateMiseEnVente, dateDisponibilité,
-				revenuCadastral, nombreChambre, adresse);
+		super(idBienImmobilier, titre, description, statut, superficie, prix, offre, type, dateMiseEnVente,
+				dateDisponibilité, revenuCadastral, nombreChambre, photo1, photo2, photo3, adresse);
 		this.caution = caution;
 		this.loyer = loyer;
 		this.charge = charge;

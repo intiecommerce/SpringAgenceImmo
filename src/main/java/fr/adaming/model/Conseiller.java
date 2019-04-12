@@ -7,6 +7,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @SuppressWarnings("serial")
 @DiscriminatorValue(value="Conseiller")
 @Entity
@@ -14,12 +16,15 @@ public class Conseiller extends Personne {
 
 	// Attributs
 	@OneToMany(mappedBy="conseillerVisite", cascade=CascadeType.ALL)
+	@JsonIgnoreProperties("conseillerVisite")
 	private List<Visite> visites;
 	
 	@OneToMany(mappedBy="conseillerResponsable", cascade=CascadeType.ALL)
+	@JsonIgnoreProperties("conseillerResponsable")
 	private List<BienImmobilier> biens;
 	
 	@OneToMany(mappedBy="conseiller", cascade=CascadeType.ALL)
+	@JsonIgnoreProperties("conseiller")
 	private List<Dossier> dossiers;
 
 	// Getters & Setters
