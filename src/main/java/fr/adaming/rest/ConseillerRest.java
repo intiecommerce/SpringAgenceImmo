@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.adaming.model.BienALouer;
@@ -54,7 +56,7 @@ public class ConseillerRest {
 	// ================================================================
 
 	@RequestMapping(value = "/modifCon", method = RequestMethod.PUT, produces = "application/json", consumes = "application/json")
-	public Conseiller modifierConseiller(Conseiller con) {
+	public Conseiller modifierConseiller(@RequestBody Conseiller con) {
 		return coService.update(con);
 	}
 
@@ -67,22 +69,22 @@ public class ConseillerRest {
 	}
 
 	@RequestMapping(value = "/ajoutPro", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
-	public Proprietaire ajouterProprietaire(Proprietaire pro) {
+	public Proprietaire ajouterProprietaire(@RequestBody Proprietaire pro) {
 		return pService.create(pro);
 	}
 
 	@RequestMapping(value = "/modifPro", method = RequestMethod.PUT, produces = "application/json", consumes = "application/json")
-	public Proprietaire modifierProprietaire(Proprietaire pro) {
+	public Proprietaire modifierProprietaire(@RequestBody Proprietaire pro) {
 		return pService.update(pro);
 	}
 
 	@RequestMapping(value = "/supprPro", method = RequestMethod.DELETE)
-	public void supprimerProprietaire(Proprietaire pro) {
+	public void supprimerProprietaire(@RequestBody Proprietaire pro) {
 		pService.delete(pro);
 	}
 
 	@RequestMapping(value = "/recPro", method = RequestMethod.GET, produces = "application/json")
-	public Proprietaire chercherProprietaireParId(int id) {
+	public Proprietaire chercherProprietaireParId(@RequestParam("pId") int id) {
 		return pService.findOne(id);
 	}
 
@@ -95,22 +97,22 @@ public class ConseillerRest {
 	}
 
 	@RequestMapping(value = "/ajoutCli", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
-	public Client ajouterClient(Client cli) {
+	public Client ajouterClient(@RequestBody Client cli) {
 		return clService.create(cli);
 	}
 
 	@RequestMapping(value = "/modifCli", method = RequestMethod.PUT, produces = "application/json", consumes = "application/json")
-	public Client modifierClient(Client cli) {
+	public Client modifierClient(@RequestBody Client cli) {
 		return clService.update(cli);
 	}
 
 	@RequestMapping(value = "/supprCli", method = RequestMethod.DELETE)
-	public void supprimerClient(Client cli) {
+	public void supprimerClient(@RequestBody Client cli) {
 		clService.delete(cli);
 	}
 
 	@RequestMapping(value = "/recCli", method = RequestMethod.GET, produces = "application/json")
-	public Client chercherClientParId(int id) {
+	public Client chercherClientParId(@RequestParam("pId") int id) {
 		return clService.findOne(id);
 	}
 
@@ -123,22 +125,22 @@ public class ConseillerRest {
 	}
 
 	@RequestMapping(value = "/ajoutBaL", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
-	public BienALouer ajouterBaL(BienALouer bal) {
+	public BienALouer ajouterBaL(@RequestBody BienALouer bal) {
 		return balService.create(bal);
 	}
 
 	@RequestMapping(value = "/modifBaL", method = RequestMethod.PUT, produces = "application/json", consumes = "application/json")
-	public BienALouer modifierBaL(BienALouer bal) {
+	public BienALouer modifierBaL(@RequestBody BienALouer bal) {
 		return balService.update(bal);
 	}
 
 	@RequestMapping(value = "/supprBaL", method = RequestMethod.DELETE)
-	public void supprimerBaL(BienALouer bal) {
+	public void supprimerBaL(@RequestBody BienALouer bal) {
 		balService.delete(bal);
 	}
 
 	@RequestMapping(value = "/recBaL", method = RequestMethod.GET, produces = "application/json")
-	public BienALouer chercherBaLParId(int id) {
+	public BienALouer chercherBaLParId(@RequestParam("pId") int id) {
 		return balService.findOne(id);
 	}
 
@@ -151,22 +153,22 @@ public class ConseillerRest {
 	}
 
 	@RequestMapping(value = "/ajoutBaV", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
-	public BienAVendre ajouterBaV(BienAVendre bal) {
+	public BienAVendre ajouterBaV(@RequestBody BienAVendre bal) {
 		return bavService.create(bal);
 	}
 
 	@RequestMapping(value = "/modifBaV", method = RequestMethod.PUT, produces = "application/json", consumes = "application/json")
-	public BienAVendre modifierBaV(BienAVendre bal) {
+	public BienAVendre modifierBaV(@RequestBody BienAVendre bal) {
 		return bavService.update(bal);
 	}
 
 	@RequestMapping(value = "/supprBaV", method = RequestMethod.DELETE)
-	public void supprimerBaV(BienAVendre bal) {
+	public void supprimerBaV(@RequestBody BienAVendre bal) {
 		bavService.delete(bal);
 	}
 
 	@RequestMapping(value = "/recBaV", method = RequestMethod.GET, produces = "application/json")
-	public BienAVendre chercherBaVParId(int id) {
+	public BienAVendre chercherBaVParId(@RequestParam("pId") int id) {
 		return bavService.findOne(id);
 	}
 
@@ -179,22 +181,22 @@ public class ConseillerRest {
 	}
 
 	@RequestMapping(value = "/ajoutVis", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
-	public Visite ajouterVis(Visite v) {
+	public Visite ajouterVis(@RequestBody Visite v) {
 		return vService.create(v);
 	}
 
 	@RequestMapping(value = "/modifVis", method = RequestMethod.PUT, produces = "application/json", consumes = "application/json")
-	public Visite modifierVis(Visite v) {
+	public Visite modifierVis(@RequestBody Visite v) {
 		return vService.update(v);
 	}
 
 	@RequestMapping(value = "/supprVis", method = RequestMethod.DELETE)
-	public void supprimerVis(Visite v) {
+	public void supprimerVis(@RequestBody Visite v) {
 		vService.delete(v);
 	}
 
 	@RequestMapping(value = "/recVis", method = RequestMethod.GET, produces = "application/json")
-	public Visite chercherVisParId(int id) {
+	public Visite chercherVisParId(@RequestParam("pId") int id) {
 		return vService.findOne(id);
 	}
 
@@ -207,22 +209,22 @@ public class ConseillerRest {
 	}
 
 	@RequestMapping(value = "/ajoutDos", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
-	public Dossier ajouterDos(Dossier dos) {
+	public Dossier ajouterDos(@RequestBody Dossier dos) {
 		return dService.create(dos);
 	}
 
 	@RequestMapping(value = "/modifDos", method = RequestMethod.PUT, produces = "application/json", consumes = "application/json")
-	public Dossier modifierDos(Dossier dos) {
+	public Dossier modifierDos(@RequestBody Dossier dos) {
 		return dService.update(dos);
 	}
 
 	@RequestMapping(value = "/supprDos", method = RequestMethod.DELETE)
-	public void supprimerDos(Dossier dos) {
+	public void supprimerDos(@RequestBody Dossier dos) {
 		dService.delete(dos);
 	}
 
 	@RequestMapping(value = "/recDos", method = RequestMethod.GET, produces = "application/json")
-	public Dossier chercherDosParId(int id) {
+	public Dossier chercherDosParId(@RequestParam("pId") int id) {
 		return dService.findOne(id);
 	}
 

@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.adaming.model.BienALouer;
@@ -43,12 +45,13 @@ public class ClientRest {
 	// ============================================ Client
 	// ================================================================
 	@RequestMapping(value = "/ajoutCli", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
-	public Client ajouterClient(Client cli) {
+	public Client ajouterClient(@RequestBody Client cli) {
+		System.out.println(cli);
 		return clService.create(cli);
 	}
 
 	@RequestMapping(value = "/modifCli", method = RequestMethod.PUT, produces = "application/json", consumes = "application/json")
-	public Client modifierClient(Client cli) {
+	public Client modifierClient(@RequestBody Client cli) {
 		return clService.update(cli);
 	}
 
@@ -62,7 +65,7 @@ public class ClientRest {
 	}
 
 	@RequestMapping(value = "/recBaL", method = RequestMethod.GET, produces = "application/json")
-	public BienALouer chercherBaLParId(int id) {
+	public BienALouer chercherBaLParId(@RequestParam("pId") int id) {
 		return balService.findOne(id);
 	}
 
@@ -75,7 +78,7 @@ public class ClientRest {
 	}
 
 	@RequestMapping(value = "/recBaV", method = RequestMethod.GET, produces = "application/json")
-	public BienAVendre chercherBaVParId(int id) {
+	public BienAVendre chercherBaVParId(@RequestParam("pId") int id) {
 		return bavService.findOne(id);
 	}
 
@@ -88,7 +91,7 @@ public class ClientRest {
 	}
 
 	@RequestMapping(value = "/recVis", method = RequestMethod.GET, produces = "application/json")
-	public Visite chercherVisParId(int id) {
+	public Visite chercherVisParId(@RequestParam("pId") int id) {
 		return vService.findOne(id);
 	}
 
@@ -101,7 +104,7 @@ public class ClientRest {
 	}
 
 	@RequestMapping(value = "/recDos", method = RequestMethod.GET, produces = "application/json")
-	public Dossier chercherDosParId(int id) {
+	public Dossier chercherDosParId(@RequestParam("pId") int id) {
 		return dService.findOne(id);
 	}
 }

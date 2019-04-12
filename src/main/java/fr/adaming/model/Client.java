@@ -85,5 +85,14 @@ public class Client extends Personne {
 	public void setVisites(List<Visite> visites) {
 		this.visites = visites;
 	}
+
+	@Override
+	public String toString() {
+		return "Client [acquereur=" + acquereur + ", id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", mail="
+				+ mail + ", mdp=" + mdp + ", telephone=" + telephone + ", role=" + role + ", active=" + active
+				+ ", adresse=" + adresse + "]";
+	}
+	
+	
 	
 }
