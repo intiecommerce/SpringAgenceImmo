@@ -142,7 +142,7 @@ public class ConseillerRest {
 		return balService.findOne(id);
 	}
 
-	// ============================================ Bien A Louer
+	// ============================================ Bien A Vendre
 	// ================================================================
 
 	@RequestMapping(value = "/listeBaV", method = RequestMethod.GET, produces = "application/json")
