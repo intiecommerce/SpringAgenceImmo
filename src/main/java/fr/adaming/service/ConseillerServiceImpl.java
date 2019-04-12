@@ -7,48 +7,52 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IConseillerDao;
+import fr.adaming.dao.IGenericDao;
+import fr.adaming.model.Client;
+import fr.adaming.model.Conseiller;
 import fr.adaming.model.Proprietaire;
 
-@Service
+@Service("conseillerService")
 @Transactional
 public class ConseillerServiceImpl implements IConseillerService {
 
+	IGenericDao<Conseiller> conseillerDao;
 	@Autowired
-	private IConseillerDao cDao;
+	public void setDao(IGenericDao<Conseiller> daoToSet){
+		conseillerDao = daoToSet;
+		conseillerDao.setClazz(Conseiller.class);
+	}
 	
-	
-	public void setcDao(IConseillerDao cDao) {
-		this.cDao = cDao;
-	}
-
 	@Override
-	public List<Proprietaire> afficherTousProprietaire() {
+	public Conseiller findOne(int id) {
 		// TODO Auto-generated method stub
-		return cDao.afficherTousProprietaire();
+		return conseillerDao.findOne(id);
 	}
 
 	@Override
-	public Proprietaire ajouterProprietaire(Proprietaire pro) {
+	public List<Conseiller> findAll() {
 		// TODO Auto-generated method stub
-		return cDao.ajouterProprietaire(pro);
+		return conseillerDao.findAll();
 	}
 
 	@Override
-	public Proprietaire modifierProprietaire(Proprietaire pro) {
+	public Conseiller create(Conseiller conseiller) {
 		// TODO Auto-generated method stub
-		return cDao.modifierProprietaire(pro);
+		return conseillerDao.create(conseiller);
 	}
 
 	@Override
-	public void supprimerProprietaire(int id) {
-		cDao.supprimerProprietaire(id);
-		
-	}
-
-	@Override
-	public Proprietaire chercherProprietaireParId(int id) {
+	public Conseiller update(Conseiller conseiller) {
 		// TODO Auto-generated method stub
-		return cDao.chercherProprietaireParId(id);
+		return conseillerDao.update(conseiller);
 	}
+
+	@Override
+	public int delete(Conseiller conseiller) {
+		// TODO Auto-generated method stub
+		return conseillerDao.delete(conseiller);
+	}
+
+
 
 }

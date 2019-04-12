@@ -2,18 +2,18 @@ package fr.adaming.service;
 
 import java.util.List;
 
-import fr.adaming.model.Proprietaire;
+import fr.adaming.model.Conseiller;
 
 public interface IConseillerService {
 	
-	public List<Proprietaire> afficherTousProprietaire();
+	public Conseiller findOne (int id);
 	
-	public Proprietaire ajouterProprietaire(Proprietaire pro);
+	public List<Conseiller> findAll();
 	
-	public Proprietaire modifierProprietaire(Proprietaire pro);
+	public Conseiller create(Conseiller conseiller);
 	
-	public void supprimerProprietaire(int id);
+	public Conseiller update(Conseiller conseiller);
 	
-	public Proprietaire chercherProprietaireParId(int id);
+	public int delete(Conseiller conseiller);
 
 }
