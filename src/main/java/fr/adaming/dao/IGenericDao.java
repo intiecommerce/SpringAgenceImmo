@@ -15,4 +15,5 @@ public interface IGenericDao<T extends Serializable> {
  
    int delete(final T entity);
    
+   void setClazz(Class<T> clazzToSet);
 }
