@@ -2,7 +2,6 @@ package fr.adaming.service;
 
 import java.util.List;
 
-import fr.adaming.model.Conseiller;
 import fr.adaming.model.Dossier;
 
 public interface IDossierService {
