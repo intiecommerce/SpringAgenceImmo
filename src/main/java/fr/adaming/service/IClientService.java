@@ -16,5 +16,5 @@ public interface IClientService {
 	
 	public Client update(Client client);
 	
-	public int delete(Client client);
+	public int delete(int id);
 }

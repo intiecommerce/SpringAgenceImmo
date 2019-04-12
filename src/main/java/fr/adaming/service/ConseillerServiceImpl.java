@@ -45,9 +45,9 @@ public class ConseillerServiceImpl implements IConseillerService {
 	}
 
 	@Override
-	public int delete(Conseiller conseiller) {
+	public int delete(int id) {
 		// TODO Auto-generated method stub
-		return conseillerDao.delete(conseiller);
+		return conseillerDao.delete(id);
 	}
 
 

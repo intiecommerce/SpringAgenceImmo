@@ -14,6 +14,6 @@ public interface IConseillerService {
 	
 	public Conseiller update(Conseiller conseiller);
 	
-	public int delete(Conseiller conseiller);
+	public int delete(int id);
 
 }

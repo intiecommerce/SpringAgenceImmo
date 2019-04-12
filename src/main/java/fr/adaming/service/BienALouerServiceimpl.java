@@ -13,7 +13,6 @@ import fr.adaming.model.BienALouer;
 @Transactional
 public class BienALouerServiceimpl implements IBienALouerService{
 	
-
 	IGenericDao<BienALouer> balDao;
 	@Autowired
 	public void setDao(IGenericDao<BienALouer> daoToSet){
@@ -46,9 +45,8 @@ public class BienALouerServiceimpl implements IBienALouerService{
 	}
 
 	@Override
-	public int delete(BienALouer bal) {
-		
-		return balDao.delete(bal);
+	public int delete(int id) {
+		return balDao.delete(id);
 	}
 
 }

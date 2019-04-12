@@ -14,6 +14,6 @@ public Visite findOne (int id);
 	
 	public Visite update(Visite visite);
 	
-	public int delete(Visite visite);
+	public int delete(int id);
 
 }

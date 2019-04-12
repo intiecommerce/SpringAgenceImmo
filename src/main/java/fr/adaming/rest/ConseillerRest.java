@@ -79,8 +79,8 @@ public class ConseillerRest {
 	}
 
 	@RequestMapping(value = "/supprPro", method = RequestMethod.DELETE)
-	public void supprimerProprietaire(@RequestBody Proprietaire pro) {
-		pService.delete(pro);
+	public void supprimerProprietaire(@RequestParam("pId") int id) {
+		pService.delete(id);
 	}
 
 	@RequestMapping(value = "/recPro", method = RequestMethod.GET, produces = "application/json")
@@ -107,8 +107,8 @@ public class ConseillerRest {
 	}
 
 	@RequestMapping(value = "/supprCli", method = RequestMethod.DELETE)
-	public void supprimerClient(@RequestBody Client cli) {
-		clService.delete(cli);
+	public void supprimerClient(@RequestParam("pId") int id) {
+		clService.delete(id);
 	}
 
 	@RequestMapping(value = "/recCli", method = RequestMethod.GET, produces = "application/json")
@@ -135,8 +135,8 @@ public class ConseillerRest {
 	}
 
 	@RequestMapping(value = "/supprBaL", method = RequestMethod.DELETE)
-	public void supprimerBaL(@RequestBody BienALouer bal) {
-		balService.delete(bal);
+	public void supprimerBaL(@RequestParam("pId") int id) {
+		balService.delete(id);
 	}
 
 	@RequestMapping(value = "/recBaL", method = RequestMethod.GET, produces = "application/json")
@@ -163,8 +163,8 @@ public class ConseillerRest {
 	}
 
 	@RequestMapping(value = "/supprBaV", method = RequestMethod.DELETE)
-	public void supprimerBaV(@RequestBody BienAVendre bal) {
-		bavService.delete(bal);
+	public void supprimerBaV(@RequestParam("pId") int id) {
+		bavService.delete(id);
 	}
 
 	@RequestMapping(value = "/recBaV", method = RequestMethod.GET, produces = "application/json")
@@ -191,8 +191,8 @@ public class ConseillerRest {
 	}
 
 	@RequestMapping(value = "/supprVis", method = RequestMethod.DELETE)
-	public void supprimerVis(@RequestBody Visite v) {
-		vService.delete(v);
+	public void supprimerVis(@RequestParam("pId") int id) {
+		vService.delete(id);
 	}
 
 	@RequestMapping(value = "/recVis", method = RequestMethod.GET, produces = "application/json")
@@ -219,8 +219,8 @@ public class ConseillerRest {
 	}
 
 	@RequestMapping(value = "/supprDos", method = RequestMethod.DELETE)
-	public void supprimerDos(@RequestBody Dossier dos) {
-		dService.delete(dos);
+	public void supprimerDos(@RequestParam("pId") int id) {
+		dService.delete(id);
 	}
 
 	@RequestMapping(value = "/recDos", method = RequestMethod.GET, produces = "application/json")

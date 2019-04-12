@@ -14,5 +14,5 @@ public interface IBienAVendreService {
 	
 	public BienAVendre update(BienAVendre bav);
 	
-	public int delete(BienAVendre bal);
+	public int delete(int id);
 }

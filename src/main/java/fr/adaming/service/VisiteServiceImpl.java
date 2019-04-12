@@ -41,12 +41,10 @@ public class VisiteServiceImpl implements IVisiteService{
 	}
 
 	@Override
-	public int delete(Visite visite) {
+	public int delete(int id) {
 		// TODO Auto-generated method stub
-		return vDao.delete(visite);
+		return vDao.delete(id);
 	}
-
-
 
 	@Override
 	public Visite findOne(int id) {

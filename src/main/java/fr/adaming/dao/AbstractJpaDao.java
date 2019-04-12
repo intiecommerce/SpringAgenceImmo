@@ -35,7 +35,8 @@ public abstract class AbstractJpaDao<T extends Serializable> {
 		return entityManager.merge(entity);
 	}
 
-	public int delete(T entity) {
+	public int delete(int id) {
+		T entity = entityManager.find(clazz, id);
 		String test1 = entityManager.createQuery("from " + clazz.getName()).getResultList().toString();
 		entityManager.remove(entity);
 		String test2 = entityManager.createQuery("from " + clazz.getName()).getResultList().toString();

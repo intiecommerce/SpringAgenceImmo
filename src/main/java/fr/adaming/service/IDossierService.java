@@ -14,5 +14,5 @@ public interface IDossierService {
 	
 	public Dossier update(Dossier dossier);
 	
-	public int delete(Dossier dossier);
+	public int delete(int id);
 }

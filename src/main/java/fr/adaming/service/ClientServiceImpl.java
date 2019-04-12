@@ -41,8 +41,8 @@ public class ClientServiceImpl implements IClientService{
 		return cDao.update(client);
 	}
 	@Override
-	public int delete(Client client) {
+	public int delete(int id) {
 		// TODO Auto-generated method stub
-		return cDao.delete(client);
+		return cDao.delete(id);
 	}
 }

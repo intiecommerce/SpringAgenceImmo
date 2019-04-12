@@ -13,7 +13,7 @@ public interface IGenericDao<T extends Serializable> {
  
    T update(final T entity);
  
-   int delete(final T entity);
+   int delete(final int id);
    
    void setClazz(Class<T> clazzToSet);
 }

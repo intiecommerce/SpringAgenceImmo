@@ -45,9 +45,9 @@ public class BienAVendreServiceImpl implements IBienAVendreService{
 	}
 
 	@Override
-	public int delete(BienAVendre bal) {
+	public int delete(int id) {
 		
-		return bavDao.delete(bal);
+		return bavDao.delete(id);
 	}
 
 }

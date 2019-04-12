@@ -17,6 +17,6 @@ public interface IBienALouerService {
 	
 	public BienALouer update(BienALouer bal);
 	
-	public int delete(BienALouer bal);
+	public int delete(int id);
 
 }

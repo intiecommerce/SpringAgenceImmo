@@ -45,9 +45,9 @@ public class DossierServiceImpl implements IDossierService{
 	}
 
 	@Override
-	public int delete(Dossier dossier) {
+	public int delete(int id) {
 		// TODO Auto-generated method stub
-		return dDao.delete(dossier);
+		return dDao.delete(id);
 	}
 
 }

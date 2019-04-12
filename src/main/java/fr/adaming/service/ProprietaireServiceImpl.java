@@ -45,9 +45,9 @@ public class ProprietaireServiceImpl implements IProprietaireService{
 	}
 
 	@Override
-	public int delete(Proprietaire proprietaire) {
+	public int delete(int id) {
 		// TODO Auto-generated method stub
-		return pDao.delete(proprietaire);
+		return pDao.delete(id);
 	}
 
 }

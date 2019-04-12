@@ -14,5 +14,5 @@ public interface IProprietaireService {
 	
 	public Proprietaire update(Proprietaire proprietaire);
 	
-	public int delete(Proprietaire proprietaire);
+	public int delete(int id);
 }
