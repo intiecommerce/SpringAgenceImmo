@@ -19,6 +19,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @SuppressWarnings("serial")
@@ -45,11 +48,8 @@ public class BienImmobilier implements Serializable {
 	protected int nombreChambre;
 	
 	@Lob
-	protected byte[] photo1;
-	@Lob
-	protected byte[] photo2;
-	@Lob
-	protected byte[] photo3;
+	protected String photo;
+
 
 	@Embedded
 	protected Adresse adresse;
@@ -57,35 +57,41 @@ public class BienImmobilier implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "id_proprietaire", referencedColumnName = "id")
 	@JsonIgnoreProperties("biensImmobilier")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Personne proprietaire;
 
 	@ManyToOne
 	@JoinColumn(name = "id_conseiller", referencedColumnName = "id")
 	@JsonIgnoreProperties("biens")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Personne conseillerResponsable;
 
 	@ManyToOne
 	@JoinColumn(name = "id_classeStandard", referencedColumnName = "idClasseStandard")
 	@JsonIgnoreProperties("biensImmobiliers")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private ClasseStandard classeStandard;
 
 	
 	@OneToMany(mappedBy = "bienImmobilier", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("bienImmobilier")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Visite> visites;
 
 	
 	@OneToMany(mappedBy = "bienImmobilier", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("bienImmobilier")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Dossier> dossiers;
 
 	// Constructeurs
 	public BienImmobilier() {
 		super();
 	}
+
 	public BienImmobilier(String titre, String description, String statut, double superficie, double prix, String offre,
 			String type, Date dateMiseEnVente, Date dateDisponibilité, double revenuCadastral, int nombreChambre,
-			byte[] photo1, byte[] photo2, byte[] photo3, Adresse adresse) {
+			String photo, Adresse adresse) {
 		super();
 		this.titre = titre;
 		this.description = description;
@@ -98,14 +104,13 @@ public class BienImmobilier implements Serializable {
 		this.dateDisponibilité = dateDisponibilité;
 		this.revenuCadastral = revenuCadastral;
 		this.nombreChambre = nombreChambre;
-		this.photo1 = photo1;
-		this.photo2 = photo2;
-		this.photo3 = photo3;
+		this.photo = photo;
 		this.adresse = adresse;
 	}
+
 	public BienImmobilier(int idBienImmobilier, String titre, String description, String statut, double superficie,
 			double prix, String offre, String type, Date dateMiseEnVente, Date dateDisponibilité,
-			double revenuCadastral, int nombreChambre, byte[] photo1, byte[] photo2, byte[] photo3, Adresse adresse) {
+			double revenuCadastral, int nombreChambre, String photo, Adresse adresse) {
 		super();
 		this.idBienImmobilier = idBienImmobilier;
 		this.titre = titre;
@@ -119,13 +124,9 @@ public class BienImmobilier implements Serializable {
 		this.dateDisponibilité = dateDisponibilité;
 		this.revenuCadastral = revenuCadastral;
 		this.nombreChambre = nombreChambre;
-		this.photo1 = photo1;
-		this.photo2 = photo2;
-		this.photo3 = photo3;
+		this.photo = photo;
 		this.adresse = adresse;
 	}
-
-
 
 	// Getters & Setters
 	public int getIdBienImmobilier() {
@@ -256,28 +257,12 @@ public class BienImmobilier implements Serializable {
 		this.classeStandard = classeStandard;
 	}
 
-	public byte[] getPhoto1() {
-		return photo1;
+	public String getPhoto() {
+		return photo;
 	}
 
-	public void setPhoto1(byte[] photo1) {
-		this.photo1 = photo1;
-	}
-
-	public byte[] getPhoto2() {
-		return photo2;
-	}
-
-	public void setPhoto2(byte[] photo2) {
-		this.photo2 = photo2;
-	}
-
-	public byte[] getPhoto3() {
-		return photo3;
-	}
-
-	public void setPhoto3(byte[] photo3) {
-		this.photo3 = photo3;
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 	public String getTitre() {

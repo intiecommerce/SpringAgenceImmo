@@ -7,6 +7,9 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @SuppressWarnings("serial")
@@ -17,14 +20,17 @@ public class Conseiller extends Personne {
 	// Attributs
 	@OneToMany(mappedBy="conseillerVisite", cascade=CascadeType.ALL)
 	@JsonIgnoreProperties("conseillerVisite")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Visite> visites;
 	
 	@OneToMany(mappedBy="conseillerResponsable", cascade=CascadeType.ALL)
 	@JsonIgnoreProperties("conseillerResponsable")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<BienImmobilier> biens;
 	
 	@OneToMany(mappedBy="conseiller", cascade=CascadeType.ALL)
 	@JsonIgnoreProperties("conseiller")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Dossier> dossiers;
 
 	// Getters & Setters

@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @SuppressWarnings("serial")
@@ -20,14 +23,17 @@ public class Client extends Personne {
 
 	@OneToMany(mappedBy="client", cascade=CascadeType.ALL)
 	@JsonIgnoreProperties("client")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Dossier> dossiers;
 
-	@ManyToMany(mappedBy="clients", cascade=CascadeType.ALL)
+	@ManyToMany(mappedBy="clients", cascade=CascadeType.ALL,targetEntity=ClasseStandard.class)
 	@JsonIgnoreProperties("clients")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<ClasseStandard> classesStandards;
 	
 	@OneToMany(mappedBy="client", cascade=CascadeType.ALL)
 	@JsonIgnoreProperties("client")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Visite> visites;
 
 	// Constructeurs

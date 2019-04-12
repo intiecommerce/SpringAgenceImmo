@@ -12,6 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @SuppressWarnings("serial")
@@ -31,16 +34,19 @@ public class Visite implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="id_client", referencedColumnName="id")
 	@JsonIgnoreProperties("visites")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Personne client;
 	
 	@ManyToOne
 	@JoinColumn(name="id_conseiller", referencedColumnName="id")
 	@JsonIgnoreProperties("visites")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Personne conseillerVisite;
 	
 	@ManyToOne
 	@JoinColumn(name="id_bienImmobilier", referencedColumnName="idBienImmobilier")
 	@JsonIgnoreProperties("visites")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private BienImmobilier bienImmobilier;
 
 	public Visite() {
