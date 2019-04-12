@@ -52,6 +52,7 @@ public class ClientRest {
 
 	@RequestMapping(value = "/modifCli", method = RequestMethod.PUT, produces = "application/json", consumes = "application/json")
 	public Client modifierClient(@RequestBody Client cli) {
+		System.out.println(cli);
 		return clService.update(cli);
 	}
 
