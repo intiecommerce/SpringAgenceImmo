@@ -7,6 +7,9 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @SuppressWarnings("serial")
@@ -19,6 +22,7 @@ public class Proprietaire extends Personne {
 	
 	@OneToMany(mappedBy="proprietaire", cascade=CascadeType.ALL)
 	@JsonIgnoreProperties("proprietaire")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<BienImmobilier> biensImmobilier;
 
 	// Constructeurs

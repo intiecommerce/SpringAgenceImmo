@@ -13,6 +13,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @SuppressWarnings("serial")
@@ -29,15 +32,17 @@ public class ClasseStandard implements Serializable {
 	private double prixMax;
 	private double surfaceMin;
 	
-	@ManyToMany
+	@ManyToMany(targetEntity=Client.class)
 	@JoinTable(name = "association_classestandards_client", 
 	joinColumns = @JoinColumn(name = "id_client"),
 	inverseJoinColumns = @JoinColumn(name = "id_classestandards"))
 	@JsonIgnoreProperties("classesStandards")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Personne> clients;
 	
 	@OneToMany(mappedBy="classeStandard", cascade=CascadeType.ALL)
 	@JsonIgnoreProperties("classeStandard")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<BienImmobilier> biensImmobiliers;
 
 	// Constructeur
