@@ -8,8 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.adaming.dao.IBienALouerDao;
+import fr.adaming.dao.IBienAVendreDao;
+import fr.adaming.model.Client;
 import fr.adaming.model.Proprietaire;
+import fr.adaming.service.IBienALouerService;
+import fr.adaming.service.IBienAVendreService;
+import fr.adaming.service.IClientService;
 import fr.adaming.service.IConseillerService;
+import fr.adaming.service.IDossierService;
 
 @RestController
 @RequestMapping("/conseiller")
@@ -18,31 +25,76 @@ import fr.adaming.service.IConseillerService;
 public class ConseillerRest {
 	
 	@Autowired
-	private IConseillerService cService;
+	private IConseillerService coService;
 	
-	@RequestMapping(value="/listeProprietaire", method=RequestMethod.GET,produces="application/json")
+	@Autowired
+	private IProprietaireService pService;
+	
+	@Autowired
+	private IClientService clService;
+	
+	@Autowired
+	private IBienALouerService balService;
+	
+	@Autowired
+	private IBienAVendreService bavService;
+	
+	@Autowired
+	private IDossierService dService;
+	
+	@Autowired 
+	private IVisite vService;
+	
+	@RequestMapping(value="/listePro", method=RequestMethod.GET,produces="application/json")
 	public List<Proprietaire> afficherTousProprietaire(){
-		return cService.afficherTousProprietaire();
+		return pService.findAll();
 	}
 
-	@RequestMapping(value="/ajouterProprietaire", method=RequestMethod.POST,produces="application/json", consumes="application/json")
+	@RequestMapping(value="/ajoutPro", method=RequestMethod.POST,produces="application/json", consumes="application/json")
 	public Proprietaire ajouterProprietaire(Proprietaire pro){
-		return cService.ajouterProprietaire(pro);
+		return pService.add(pro);
 	}
 	
-	@RequestMapping(value="/modifierProprietaire", method=RequestMethod.PUT,produces="application/json", consumes="application/json")
+	@RequestMapping(value="/modifPro", method=RequestMethod.PUT,produces="application/json", consumes="application/json")
 	public Proprietaire modifierProprietaire(Proprietaire pro){
-		return cService.modifierProprietaire(pro);
+		return pService.update(pro);
 	}
 	
-	@RequestMapping(value="/supprimerProprietaire", method=RequestMethod.DELETE)
+	@RequestMapping(value="/supprPro", method=RequestMethod.DELETE)
 	public void supprimerProprietaire(int id){
-		cService.supprimerProprietaire(id);
+		pService.delete(id);
 	}
 	
-	@RequestMapping(value="/chercherProprietaire", method=RequestMethod.GET,produces="application/json")
+	@RequestMapping(value="/recPro", method=RequestMethod.GET,produces="application/json")
 	public Proprietaire chercherProprietaireParId(int id){
-		return cService.chercherProprietaireParId(id);
+		return pService.findOne(id);
+	}
+	
+	//======================================================================================================================================
+	
+	@RequestMapping(value="/listeCl", method=RequestMethod.GET,produces="application/json")
+	public List<Client> afficherTousClient(){
+		return clService.findAll();
+	}
+
+	@RequestMapping(value="/ajoutPro", method=RequestMethod.POST,produces="application/json", consumes="application/json")
+	public Client ajouterClient(Client cli){
+		return clService.create(cli);
+	}
+	
+	@RequestMapping(value="/modifPro", method=RequestMethod.PUT,produces="application/json", consumes="application/json")
+	public Client modifierClient(Client cli){
+		return clService.update(cli);
+	}
+	
+	@RequestMapping(value="/supprPro", method=RequestMethod.DELETE)
+	public void supprimerClient(Client cli){
+		clService.delete(cli);
+	}
+	
+	@RequestMapping(value="/recPro", method=RequestMethod.GET,produces="application/json")
+	public Client chercherClientParId(int id){
+		return clService.findOne(id);
 	}
 
 }
