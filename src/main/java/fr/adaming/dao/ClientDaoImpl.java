@@ -21,9 +21,9 @@ public class ClientDaoImpl extends AbstractJpaDao<Client> implements IClientDao 
 	@Override
 	public List<ClasseStandard> findAllClasseStandardByClient(int id) {
 		// ====================requete SQL pour une liste.
-		String reqListeSQL = "SELECT * FROM personne AS p,classestandard AS c,association_classestandards_client AS t WHERE p.id=? AND p.id=t.id_client AND t.id_classesstandard=c.idClasseStandard";
+		String reqListeSQL = "SELECT * FROM personne AS p,classestandard AS c,association_classestandards_client AS t WHERE p.id=? AND p.id=t.id_client AND t.id_classestandards=c.idClasseStandard";
 
-		Query querySQLListe = entityManager.createNativeQuery(reqListeSQL);
+		Query querySQLListe = entityManager.createNativeQuery(reqListeSQL,ClasseStandard.class);
 		// passage des params
 		querySQLListe.setParameter(1, id);
 
@@ -37,9 +37,9 @@ public class ClientDaoImpl extends AbstractJpaDao<Client> implements IClientDao 
 	@Override
 	public List<Client> findAllClientByClassStandard(int id) {
 		// ====================requete SQL pour une liste.
-		String reqListeSQL = "SELECT * FROM personne AS p,classestandard AS c,association_classestandards_client AS t WHERE c.idClasseStandard=? AND p.id=t.id_client AND t.id_classesstandard=c.idClasseStandard";
+		String reqListeSQL = "SELECT * FROM personne AS p,classestandard AS c,association_classestandards_client AS t WHERE c.idClasseStandard=? AND p.id=t.id_client AND t.id_classestandards=c.idClasseStandard";
 
-		Query querySQLListe = entityManager.createNativeQuery(reqListeSQL);
+		Query querySQLListe = entityManager.createNativeQuery(reqListeSQL,Client.class);
 		// passage des params
 		querySQLListe.setParameter(1, id);
 
@@ -53,9 +53,9 @@ public class ClientDaoImpl extends AbstractJpaDao<Client> implements IClientDao 
 	@Override
 	public List<BienImmobilier> findAllBienImmoByClassStandard(int id) {
 		// ====================requete SQL pour une liste.
-		String reqListeSQL = "SELECT * FROM classestandard AS c,bienimmobilier AS b WHERE c.idClasseStandard=? AND b.type=c.typeBien";
+		String reqListeSQL = "SELECT * FROM classestandard AS c,bienimmobilier AS b WHERE c.idClasseStandard=? AND b.id_classeStandard=c.idClasseStandard";
 
-		Query querySQLListe = entityManager.createNativeQuery(reqListeSQL);
+		Query querySQLListe = entityManager.createNativeQuery(reqListeSQL,BienImmobilier.class);
 		// passage des params
 		querySQLListe.setParameter(1, id);
 

@@ -125,7 +125,7 @@ public class ConseillerRest {
 
 	// ============================================ Bien Immobilier
 	// ================================================================
-	@RequestMapping(value = "/recCliByCstd", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/recBienByCstd", method = RequestMethod.GET, produces = "application/json")
 	public List<BienImmobilier> chercherBienImmobilierParClasseStandard(@RequestParam("pId") int id) {
 		return clService.findAllBienImmoByClassStandard(id);
 	}
