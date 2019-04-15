@@ -1,14 +1,20 @@
 package fr.adaming.rest;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import fr.adaming.model.BienALouer;
 import fr.adaming.model.BienAVendre;
@@ -21,6 +27,7 @@ import fr.adaming.model.Proprietaire;
 import fr.adaming.model.Visite;
 import fr.adaming.service.IBienALouerService;
 import fr.adaming.service.IBienAVendreService;
+import fr.adaming.service.IBienImmobilierService;
 import fr.adaming.service.IClientService;
 import fr.adaming.service.IConseillerService;
 import fr.adaming.service.IDossierService;
@@ -44,6 +51,9 @@ public class ConseillerRest {
 
 	@Autowired
 	private IBienALouerService balService;
+	
+	@Autowired
+	private IBienImmobilierService bService;
 
 	@Autowired
 	private IBienAVendreService bavService;
@@ -140,7 +150,10 @@ public class ConseillerRest {
 	}
 
 	@RequestMapping(value = "/ajoutBaL", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
-	public BienALouer ajouterBaL(@RequestBody BienALouer bal) {
+	public BienALouer ajouterBaL(@RequestBody BienALouer bal, MultipartFile file) throws Exception {
+		byte[] fileToEncode = file.getBytes();
+		String encodedFile = Base64.getEncoder().encodeToString(fileToEncode);
+		bal.setPhoto(encodedFile);
 		return balService.create(bal);
 	}
 
@@ -248,5 +261,18 @@ public class ConseillerRest {
 	@RequestMapping(value = "/recCstdByCli", method = RequestMethod.GET, produces = "application/json")
 	public List<ClasseStandard> chercherClasseStandardParClient(@RequestParam("pId") int id) {
 		return clService.findAllClasseStandardByClient(id);
+	}
+	
+	/** METHODE AFFICHER PHOTO */
+	@SuppressWarnings("deprecation")
+	@RequestMapping(value = "/photoBien", produces = MediaType.IMAGE_JPEG_VALUE)
+	@ResponseBody
+	public byte[] getPhoto(int idBien) throws IOException {
+		BienImmobilier bOut = bService.findOne(idBien);
+		if (bOut.getPhoto() == null) { 
+			return new byte[0];
+		} else {
+			return IOUtils.toByteArray(bOut.getPhoto());
+		}
 	}
 }
