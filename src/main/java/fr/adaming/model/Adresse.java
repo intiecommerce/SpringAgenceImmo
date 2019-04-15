@@ -7,7 +7,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 @Access(AccessType.FIELD)
 public class Adresse {
-
+//
 	// Attributs
 	private String nomAdresse;
 	private String codePostal;
