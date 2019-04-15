@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IClientDao;
-import fr.adaming.dao.IGenericDao;
 import fr.adaming.model.BienImmobilier;
 import fr.adaming.model.ClasseStandard;
 import fr.adaming.model.Client;
@@ -16,17 +15,8 @@ import fr.adaming.model.Client;
 @Transactional
 public class ClientServiceImpl implements IClientService{
 
-	IGenericDao<Client> cDao;
-	
-	
 	@Autowired
-	public void setDao(IGenericDao<Client> daoToSet){
-		cDao = daoToSet;
-		cDao.setClazz(Client.class);
-	}
-	
-	@Autowired
-	IClientDao clientDao;
+	IClientDao cDao;
 	@Override
 	public Client findOne(int id) {
 		// TODO Auto-generated method stub
@@ -55,16 +45,16 @@ public class ClientServiceImpl implements IClientService{
 	@Override
 	public List<ClasseStandard> findAllClasseStandardByClient(int id) {
 		// TODO Auto-generated method stub
-		return clientDao.findAllClasseStandardByClient(id);
+		return cDao.findAllClasseStandardByClient(id);
 	}
 	@Override
 	public List<Client> findAllClientByClassStandard(int id) {
 		// TODO Auto-generated method stub
-		return clientDao.findAllClientByClassStandard(id);
+		return cDao.findAllClientByClassStandard(id);
 	}
 	@Override
 	public List<BienImmobilier> findAllBienImmoByClassStandard(int id) {
 		// TODO Auto-generated method stub
-		return clientDao.findAllBienImmoByClassStandard(id);
+		return cDao.findAllBienImmoByClassStandard(id);
 	}
 }
