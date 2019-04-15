@@ -20,8 +20,6 @@ public interface IClientService {
 	
 
 	public int delete(int id);
-
-	public int delete(Client client);
 	
 	public List<ClasseStandard> findAllClasseStandardByClient(int id);
 	
