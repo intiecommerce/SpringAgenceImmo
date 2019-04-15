@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.adaming.model.BienALouer;
 import fr.adaming.model.BienAVendre;
+import fr.adaming.model.BienImmobilier;
+import fr.adaming.model.ClasseStandard;
 import fr.adaming.model.Client;
 import fr.adaming.model.Conseiller;
 import fr.adaming.model.Dossier;
@@ -115,7 +117,20 @@ public class ConseillerRest {
 	public Client chercherClientParId(@RequestParam("pId") int id) {
 		return clService.findOne(id);
 	}
+	
+	@RequestMapping(value = "/recCliByCstd", method = RequestMethod.GET, produces = "application/json")
+	public List<Client> chercherClientParClasseStandard(@RequestParam("pId") int id) {
+		return clService.findAllClientByClassStandard(id);
+	}
 
+	// ============================================ Bien Immobilier
+	// ================================================================
+	@RequestMapping(value = "/recBienByCstd", method = RequestMethod.GET, produces = "application/json")
+	public List<BienImmobilier> chercherBienImmobilierParClasseStandard(@RequestParam("pId") int id) {
+		return clService.findAllBienImmoByClassStandard(id);
+	}
+	
+	
 	// ============================================ Bien A Louer
 	// ================================================================
 
@@ -227,5 +242,11 @@ public class ConseillerRest {
 	public Dossier chercherDosParId(@RequestParam("pId") int id) {
 		return dService.findOne(id);
 	}
-
+	
+	// ============================================ ClasseStandard
+	// ================================================================
+	@RequestMapping(value = "/recCstdByCli", method = RequestMethod.GET, produces = "application/json")
+	public List<ClasseStandard> chercherClasseStandardParClient(@RequestParam("pId") int id) {
+		return clService.findAllClasseStandardByClient(id);
+	}
 }

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.adaming.model.BienALouer;
 import fr.adaming.model.BienAVendre;
+import fr.adaming.model.BienImmobilier;
+import fr.adaming.model.ClasseStandard;
 import fr.adaming.model.Client;
 import fr.adaming.model.Dossier;
 import fr.adaming.model.Visite;
@@ -56,6 +58,12 @@ public class ClientRest {
 		return clService.update(cli);
 	}
 
+	// ============================================ Bien Immobilier
+	// ================================================================
+	@RequestMapping(value = "/recBienByCstd", method = RequestMethod.GET, produces = "application/json")
+	public List<BienImmobilier> chercherBienImmobilierParClasseStandard(@RequestParam("pId") int id) {
+		return clService.findAllBienImmoByClassStandard(id);
+	}
 
 	// ============================================ Bien A Louer
 	// ================================================================
@@ -107,5 +115,12 @@ public class ClientRest {
 	@RequestMapping(value = "/recDos", method = RequestMethod.GET, produces = "application/json")
 	public Dossier chercherDosParId(@RequestParam("pId") int id) {
 		return dService.findOne(id);
+	}
+	
+	// ============================================ ClasseStandard
+	// ================================================================
+	@RequestMapping(value = "/recCstdByCli", method = RequestMethod.GET, produces = "application/json")
+	public List<ClasseStandard> chercherClasseStandardParClient(@RequestParam("pId") int id) {
+		return clService.findAllClasseStandardByClient(id);
 	}
 }

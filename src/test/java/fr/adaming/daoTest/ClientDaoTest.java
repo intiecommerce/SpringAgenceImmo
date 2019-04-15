@@ -30,6 +30,7 @@ public class ClientDaoTest {
 	@Rollback(true)//Des que le test est terminé la base de donnée doit revenir à son état initial
 	public void testAjouterClient(){
 		Client cIn = new Client();
+		cIn.setAcquereur(true);
 		
 		
 		//récupéerer la taille de la liste avant l'ajout
