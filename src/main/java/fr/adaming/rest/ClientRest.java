@@ -57,6 +57,11 @@ public class ClientRest {
 		System.out.println(cli);
 		return clService.update(cli);
 	}
+	
+	@RequestMapping(value = "/recCli", method = RequestMethod.GET, produces = "application/json")
+	public Client chercherClientParId(@RequestParam("pId") int id) {
+		return clService.findOne(id);
+	}
 
 	// ============================================ Bien Immobilier
 	// ================================================================
