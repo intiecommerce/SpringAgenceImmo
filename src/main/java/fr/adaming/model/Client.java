@@ -27,12 +27,12 @@ public class Client extends Personne {
 	private List<Dossier> dossiers;
 
 	@ManyToMany(mappedBy="clients", cascade=CascadeType.ALL,targetEntity=ClasseStandard.class)
-	@JsonIgnoreProperties("clients")
+	@JsonIgnoreProperties({"clients","visites","dossiers"})
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<ClasseStandard> classesStandards;
 	
 	@OneToMany(mappedBy="client", cascade=CascadeType.ALL)
-	@JsonIgnoreProperties("client")
+	@JsonIgnoreProperties({"client","classesStandards","dossiers"})
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Visite> visites;
 
