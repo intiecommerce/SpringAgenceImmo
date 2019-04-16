@@ -33,7 +33,7 @@ public class Visite implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="id_client", referencedColumnName="id")
-	@JsonIgnoreProperties("visites")
+	@JsonIgnoreProperties({"visites","classesStandards","dossiers"})
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Personne client;
 	
