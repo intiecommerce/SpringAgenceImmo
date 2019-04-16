@@ -43,7 +43,7 @@ public class BienImmobilier implements Serializable {
 	@Temporal(TemporalType.DATE)
 	protected Date dateMiseEnVente;
 	@Temporal(TemporalType.DATE)
-	protected Date dateDisponibilité;
+	protected Date dateDisponibilite;
 	protected double revenuCadastral;
 	protected int nombreChambre;
 	
@@ -90,7 +90,7 @@ public class BienImmobilier implements Serializable {
 	}
 
 	public BienImmobilier(String titre, String description, String statut, double superficie, double prix, String offre,
-			String type, Date dateMiseEnVente, Date dateDisponibilité, double revenuCadastral, int nombreChambre,
+			String type, Date dateMiseEnVente, Date dateDisponibilite, double revenuCadastral, int nombreChambre,
 			String photo, Adresse adresse) {
 		super();
 		this.titre = titre;
@@ -101,7 +101,7 @@ public class BienImmobilier implements Serializable {
 		this.offre = offre;
 		this.type = type;
 		this.dateMiseEnVente = dateMiseEnVente;
-		this.dateDisponibilité = dateDisponibilité;
+		this.dateDisponibilite = dateDisponibilite;
 		this.revenuCadastral = revenuCadastral;
 		this.nombreChambre = nombreChambre;
 		this.photo = photo;
@@ -109,7 +109,7 @@ public class BienImmobilier implements Serializable {
 	}
 
 	public BienImmobilier(int idBienImmobilier, String titre, String description, String statut, double superficie,
-			double prix, String offre, String type, Date dateMiseEnVente, Date dateDisponibilité,
+			double prix, String offre, String type, Date dateMiseEnVente, Date dateDisponibilite,
 			double revenuCadastral, int nombreChambre, String photo, Adresse adresse) {
 		super();
 		this.idBienImmobilier = idBienImmobilier;
@@ -121,7 +121,7 @@ public class BienImmobilier implements Serializable {
 		this.offre = offre;
 		this.type = type;
 		this.dateMiseEnVente = dateMiseEnVente;
-		this.dateDisponibilité = dateDisponibilité;
+		this.dateDisponibilite = dateDisponibilite;
 		this.revenuCadastral = revenuCadastral;
 		this.nombreChambre = nombreChambre;
 		this.photo = photo;
@@ -185,12 +185,12 @@ public class BienImmobilier implements Serializable {
 		this.dateMiseEnVente = dateMiseEnVente;
 	}
 
-	public Date getDateDisponibilité() {
-		return dateDisponibilité;
+	public Date getdateDisponibilite() {
+		return dateDisponibilite;
 	}
 
-	public void setDateDisponibilité(Date dateDisponibilité) {
-		this.dateDisponibilité = dateDisponibilité;
+	public void setdateDisponibilite(Date dateDisponibilite) {
+		this.dateDisponibilite = dateDisponibilite;
 	}
 
 	public double getRevenuCadastral() {
